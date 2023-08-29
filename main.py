@@ -11,18 +11,31 @@ try:
     connection.autocommit = True
     with connection.cursor() as cursor:
         cursor.execute(
-            "SELECT version();"
+            """DROP TABLE if exists students, data_students;"""
         )
-        print(f"Server version: {cursor.fetchone()}")
+        print("[INFO] Deleted tables successfully")
 
     try:
         with connection.cursor() as cursor:
             cursor.execute(
                 """
-                CREATE TABLE c(
+                CREATE TABLE students(
                     id serial PRIMARY KEY,
                     first_name varchar(50) NOT NULL,
                     second_name varchar(50) NOT NULL);
+                """
+            )
+            print("[INFO] Table created successfull")
+    except:
+        print("[INFO] Table exist")
+
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(
+                """
+                CREATE TABLE data_students(
+                    age integer NOT NULL)
+                INHERITS (students);
                 """
             )
             print("[INFO] Table created successfull")
@@ -33,7 +46,6 @@ try:
         cursor.execute(
             """
             INSERT INTO students (first_name, second_name) VALUES
-            ('Ivan', 'Ivanov'),
             ('Nikolay', 'Nikolaev');
             """
         )
