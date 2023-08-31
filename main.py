@@ -45,6 +45,8 @@ try:
             """
             INSERT INTO customer (first_name, last_name, email) VALUES
             ('Nikolay', 'Nikolaev', 'NN@test.ru');
+            INSERT INTO customer (first_name, last_name, email) VALUES
+            ('Vlad', 'Keep', 'Vlad@test.ru');
             INSERT INTO customer (first_name, last_name) VALUES
             ('Ivan', 'Ivanov');
             INSERT INTO payment (customer_id, amount, payment_date) VALUES
