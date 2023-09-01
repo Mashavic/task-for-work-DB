@@ -102,34 +102,17 @@ def main():
 
         with connection.cursor() as cursor:
             cursor.execute(
-                """DROP TABLE if exists customer, payment;"""
-            )
-
-        with connection.cursor() as cursor:
-            cursor.execute(
-                """
+                """DROP TABLE if exists customer, payment;
                 CREATE TABLE customer(
                     customer_id serial PRIMARY KEY,
                     first_name varchar(25) NOT NULL,
                     last_name varchar(25) NOT NULL,
                     email varchar(30));
-                """
-            )
-
-        with connection.cursor() as cursor:
-            cursor.execute(
-                """
                 CREATE TABLE payment(
                     payment_id serial PRIMARY KEY,
                     customer_id integer,
                     amount real,
                     payment_date date);
-                """
-            )
-
-        with connection.cursor() as cursor:
-            cursor.execute(
-                """
                 INSERT INTO customer (first_name, last_name, email) VALUES
                 ('Nikolay', 'Nikolaev', 'NN@test.ru');
                 INSERT INTO customer (first_name, last_name, email) VALUES
