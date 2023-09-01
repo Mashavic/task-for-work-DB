@@ -5,7 +5,7 @@ import sys
 import psycopg2
 from PyQt5.QtWidgets import (
     QTableWidget, QTableWidgetItem,
-    QApplication, QDialog)
+    QApplication)
 
 
 class Tb(QTableWidget):
@@ -47,16 +47,19 @@ class Tb(QTableWidget):
             i += 1
         self.resizeColumnsToContents()
 
-    def on_cell_item_clicked(self):
-        self.second_form = SecondForm()
+    def on_cell_item_clicked(self, item: QTableWidgetItem):
+        self.rowClick = item.row()+1
+        self.second_form = SecondForm(self.rowClick)
 
 
 class SecondForm(QTableWidget):
-    def __init__(self):
+    def __init__(self, rowClick):
+        self.rowClick = rowClick
+        print(rowClick)
         self.connect_data_base()
         super().__init__()
         self.setGeometry(400, 400, 800, 800)
-        self.setWindowTitle('Вторая форма')
+        self.setWindowTitle('Data Base #end_table')
         self.setColumnCount(4)
         self.verticalHeader().hide()
         self.updt_new()  # обновить таблицу
@@ -76,7 +79,7 @@ class SecondForm(QTableWidget):
         self.clear()
         self.setRowCount(0)
         self.setHorizontalHeaderLabels(['payment_id', 'customer_id', 'amount', 'payment_date'])  # заголовки столцов
-        self.cursor_view.execute("select * from payment where customer_id = {}".format(1))
+        self.cursor_view.execute("select * from payment where customer_id = {}".format(self.rowClick))
         rows = self.cursor_view.fetchall()
         i = 0
         for elem in rows:
