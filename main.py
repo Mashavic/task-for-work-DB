@@ -72,7 +72,6 @@ class SecondForm(QTableWidget):
             database=db_name
         )
         self.cursor_view = self.connection.cursor()
-        self.connection.autocommit = True
 
     def updt_new(self):
         self.clear()
