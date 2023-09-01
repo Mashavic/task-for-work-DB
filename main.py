@@ -52,7 +52,19 @@ try:
             INSERT INTO payment (customer_id, amount, payment_date) VALUES
             (1, 8.99, '12.07.2023');
             INSERT INTO payment (customer_id, amount, payment_date) VALUES
-            (1, 6.69, '13.07.2023');
+            (1, 3.99, '14.07.2023');
+            INSERT INTO payment (customer_id, amount, payment_date) VALUES
+            (1, 4.99, '16.07.2023');
+            INSERT INTO payment (customer_id, amount, payment_date) VALUES
+            (2, 6.69, '13.07.2023');
+            INSERT INTO payment (customer_id, amount, payment_date) VALUES
+            (2, 7.69, '14.07.2023');
+            INSERT INTO payment (customer_id, amount, payment_date) VALUES
+            (3, 7.69, '14.07.2023');
+            INSERT INTO payment (customer_id, amount, payment_date) VALUES
+            (3, 3.69, '14.07.2023');
+            INSERT INTO payment (customer_id, amount, payment_date) VALUES
+            (3, 4.69, '18.07.2023');
             """
         )
     with connection.cursor() as cursor:
