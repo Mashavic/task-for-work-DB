@@ -76,7 +76,7 @@ class SecondForm(QTableWidget):
         self.clear()
         self.setRowCount(0)
         self.setHorizontalHeaderLabels(['payment_id', 'customer_id', 'amount', 'payment_date'])  # заголовки столцов
-        self.cursor_view.execute("SELECT * FROM payment")
+        self.cursor_view.execute("select * from payment where customer_id = {}".format(1))
         rows = self.cursor_view.fetchall()
         i = 0
         for elem in rows:
